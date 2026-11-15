@@ -83,18 +83,38 @@ const head = (web) => `<!doctype html>
 ${web ? '<link rel="manifest" href="manifest.webmanifest">\n<link rel="apple-touch-icon" href="icon.svg">\n' : ''}</head>
 <body>
 `;
-fs.writeFileSync(path.join(DIST, 'index.html'), head(true) + src + '\n</body>\n</html>\n');
+// the web app lives at /app/; the site root is the download page
+const APP = path.join(DIST, 'app'); fs.mkdirSync(APP, { recursive: true });
+fs.writeFileSync(path.join(APP, 'index.html'), head(true) + src + '\n</body>\n</html>\n');
 fs.writeFileSync(path.join(DIST, 'halt-workspace.html'), head(false) + src + '\n</body>\n</html>\n');
 for (const f of fs.readdirSync(path.join(ROOT, 'public'))) {
   let body = fs.readFileSync(path.join(ROOT, 'public', f));
   if (f === 'sw.js') body = Buffer.from(String(body).replace('__VERSION__', latest.version));
-  fs.writeFileSync(path.join(DIST, f), body);
+  fs.writeFileSync(path.join(APP, f), body);
 }
-fs.writeFileSync(path.join(DIST, 'version.json'), JSON.stringify({
+const versionJson = JSON.stringify({
   version: latest.version, date: latest.date, title: latest.title, summary: latest.summary, groups: latest.groups,
   releases: repo ? `https://github.com/${repo}/releases/tag/v${latest.version}` : null
-}, null, 2));
+}, null, 2);
+fs.writeFileSync(path.join(APP, 'version.json'), versionJson);
+fs.writeFileSync(path.join(DIST, 'version.json'), versionJson);
 fs.writeFileSync(path.join(DIST, '.nojekyll'), '');
+// retire the service worker that used to sit at the site root (before the app moved to /app/)
+fs.writeFileSync(path.join(DIST, 'sw.js'), "self.addEventListener('install',()=>self.skipWaiting());self.addEventListener('activate',e=>e.waitUntil(self.registration.unregister()));\n");
+// download page + screenshots
+const REPO_URL = repo ? `https://github.com/${repo}` : 'https://github.com';
+const relBase = `${REPO_URL}/releases/download/v${latest.version}/`;
+const landing = rd('landing/index.html')
+  .replaceAll('{{VERSION}}', latest.version)
+  .replaceAll('{{DATE}}', new Date(latest.date + 'T00:00:00Z').toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }))
+  .replaceAll('{{EXE_URL}}', relBase + `Haltspace_${latest.version}_x64-setup.exe`)
+  .replaceAll('{{MSI_URL}}', relBase + `Haltspace_${latest.version}_x64_en-US.msi`)
+  .replaceAll('{{RELEASES}}', `${REPO_URL}/releases`)
+  .replaceAll('{{REPO_URL}}', REPO_URL)
+  .replaceAll('{{REPO}}', repo);
+fs.writeFileSync(path.join(DIST, 'index.html'), landing);
+const SHOTS = path.join(ROOT, 'docs', 'screenshots');
+if (fs.existsSync(SHOTS)) { fs.mkdirSync(path.join(DIST, 'screenshots'), { recursive: true }); for (const f of fs.readdirSync(SHOTS)) fs.copyFileSync(path.join(SHOTS, f), path.join(DIST, 'screenshots', f)); }
 
 // desktop (Windows app) frontend: same app, no web-install files
 const DESK = path.join(ROOT, 'dist-desktop');
@@ -108,8 +128,8 @@ if (fs.existsSync(TC) && repo) {
   if (JSON.stringify(tc.plugins.updater.endpoints) !== JSON.stringify(ep)) { tc.plugins.updater.endpoints = ep; fs.writeFileSync(TC, JSON.stringify(tc, null, 2) + '\n'); }
 }
 const notes = [latest.summary, ...latest.groups.map(g => `### ${g.name}\n${g.items.map(i => '- ' + i).join('\n')}`)].filter(Boolean).join('\n\n');
-fs.writeFileSync(path.join(DIST, 'release-notes.md'), notes + `\n\n---\n### Download\n- **Windows app:** \`Haltspace_${latest.version}_x64-setup.exe\` below (the Windows build appears here a few minutes after the release). Already installed? Haltspace updates itself.\n- **Single file, any computer:** \`halt-workspace.html\`, which opens in Chrome, Edge or Firefox.${repo ? `\n- **Online:** https://${repo.split('/')[0].toLowerCase()}.github.io/${repo.split('/')[1]}/` : ''}\n`);
+fs.writeFileSync(path.join(DIST, 'release-notes.md'), notes + `\n\n---\n### Download\n- **Windows app:** \`Haltspace_${latest.version}_x64-setup.exe\` below (the Windows build appears here a few minutes after the release). Already installed? Haltspace updates itself.\n- **Single file, any computer:** \`halt-workspace.html\`, which opens in Chrome, Edge or Firefox.${repo ? `\n- **Use it in your browser:** https://${repo.split('/')[0].toLowerCase()}.github.io/${repo.split('/')[1]}/app/\n- **Download page:** https://${repo.split('/')[0].toLowerCase()}.github.io/${repo.split('/')[1]}/` : ''}\n`);
 fs.writeFileSync(path.join(DIST, 'release-title.txt'), `v${latest.version}${latest.title ? ' · ' + latest.title : ''}`);
 
-console.log(`halt.ae ${latest.version} (${latest.date}) · ${releases.length} releases · ${roadmap.reduce((n, g) => n + g.items.length, 0)} roadmap items${repo ? ' · repo ' + repo : ' · no repo set yet'}`);
+console.log(`Haltspace ${latest.version} (${latest.date}) · ${releases.length} releases · ${roadmap.reduce((n, g) => n + g.items.length, 0)} roadmap items${repo ? ' · repo ' + repo : ' · no repo set yet'}`);
 console.log('dist/ ready:', fs.readdirSync(DIST).join(', '));

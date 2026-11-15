@@ -2,7 +2,36 @@
 
 **by halt.ae**: notes, infinite canvases and project boards in one app, all linked together. Write like in Word, sketch like on a whiteboard, plan on boards, and connect everything with `[[links]]`.
 
-[**Download for Windows**](https://github.com/ssaad5678/haltspace/releases/latest) · [Use it online](https://ssaad5678.github.io/haltspace/) · [What's new](CHANGELOG.md) · [Roadmap](ROADMAP.md)
+### [⬇ Download Haltspace for Windows](https://ssaad5678.github.io/haltspace/)
+
+Free · Windows 10 and 11 · about 2 MB · updates itself · no account
+
+[Download page](https://ssaad5678.github.io/haltspace/) · [All releases](https://github.com/ssaad5678/haltspace/releases/latest) · [Use it in your browser](https://ssaad5678.github.io/haltspace/app/) · [What's new](CHANGELOG.md) · [Roadmap](ROADMAP.md)
+
+![Haltspace start screen](docs/screenshots/home.png)
+
+## One app instead of six
+
+Haltspace is a free alternative to the tools people switch between all day:
+
+| Instead of | Haltspace gives you |
+| --- | --- |
+| **Notion** | Pages inside pages, folders, templates and a `/` slash menu |
+| **Obsidian** | `[[Links]]` between pages, backlinks, tags and a graph view, all saved on your device |
+| **Excalidraw** | Hand-drawn shapes, arrows and freehand pen, with drawings you can drop into notes |
+| **Miro** | An infinite whiteboard with sticky notes, mind maps, frames and presentation mode |
+| **Microsoft Word** | Real A4 pages, a labeled toolbar, headers and footers, and Save as PDF |
+| **Trello** | Project boards with cards, due dates and labels, plus table and calendar views |
+
+## Screenshots
+
+| Notes | Whiteboard |
+| --- | --- |
+| ![Notes](docs/screenshots/notes.png) | ![Whiteboard](docs/screenshots/canvas.png) |
+| **Boards** | **Graph** |
+| ![Boards](docs/screenshots/board.png) | ![Graph](docs/screenshots/graph.png) |
+| **Dark mode** | **Updates** |
+| ![Dark mode](docs/screenshots/canvas-dark.png) | ![Updates](docs/screenshots/updates.png) |
 
 ## Install
 
@@ -18,7 +47,7 @@ Windows may show "Windows protected your PC" because the installer isn't code-si
 
 ### Online, or on any computer
 
-- **Online:** open https://ssaad5678.github.io/haltspace/ in Chrome or Edge. Click the install icon in the address bar to add it as an app. It updates itself.
+- **Online:** open https://ssaad5678.github.io/haltspace/app/ in Chrome or Edge. Click the install icon in the address bar to add it as an app. It updates itself.
 - **Single file:** download `halt-workspace.html` from the release and open it in any browser.
 
 > Your notes are stored on your own computer. Nothing is uploaded. Use **Home → Backup** now and then to save a copy of everything, and **Restore backup** to bring it back on another computer.
@@ -76,6 +105,8 @@ That builds the Windows installer into `src-tauri/target/release/bundle/`. It ne
 | `src-tauri/` | The Windows app: window, installer settings and auto-updater (Rust, Tauri 2) |
 | `CHANGELOG.md` | Version history; it feeds the in-app Updates screen and GitHub releases |
 | `ROADMAP.md` | Planned features, shown under Updates in the app |
+| `landing/index.html` | The download page at ssaad5678.github.io/haltspace |
+| `docs/screenshots/` | Product screenshots used by the download page and this README |
 | `public/` | Web-app files: manifest, icons, offline service worker |
 | `scripts/build.js` | Builds `dist/` (web) and `dist-desktop/` (Windows), and syncs version info into the app |
 | `.github/workflows/release.yml` | Publishes the web version, creates releases and builds the Windows app on every push |
