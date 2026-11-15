@@ -1,0 +1,15 @@
+{
+  "name": "Haltspace",
+  "short_name": "Haltspace",
+  "description": "Notes, canvases and project boards, linked together.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F2F4EE",
+  "theme_color": "#0F3B26",
+  "icons": [
+    { "src": "icon.png", "sizes": "1024x1024", "type": "image/png", "purpose": "any" },
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}

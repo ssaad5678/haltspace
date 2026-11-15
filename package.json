@@ -1,0 +1,15 @@
+{
+  "name": "haltspace",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Haltspace by halt.ae: notes, canvases and project boards, linked together.",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "start": "node serve.js",
+    "tauri": "tauri",
+    "build:windows": "tauri build"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.12.4"
+  }
+}

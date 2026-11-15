@@ -1,0 +1,70 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Haltspace",
+  "mainBinaryName": "Haltspace",
+  "version": "../package.json",
+  "identifier": "ae.halt.haltspace",
+  "build": {
+    "frontendDist": "../dist-desktop",
+    "beforeBuildCommand": "node scripts/build.js"
+  },
+  "app": {
+    "withGlobalTauri": true,
+    "windows": [
+      {
+        "label": "main",
+        "title": "Haltspace",
+        "width": 1440,
+        "height": 900,
+        "minWidth": 960,
+        "minHeight": 600,
+        "center": true,
+        "dragDropEnabled": false,
+        "backgroundColor": "#F2F4EE"
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": [
+      "nsis",
+      "msi"
+    ],
+    "publisher": "halt.ae",
+    "copyright": "© 2026 halt.ae",
+    "category": "Productivity",
+    "shortDescription": "Notes, canvases and project boards, linked together",
+    "longDescription": "Haltspace by halt.ae: write notes like in Word, sketch on an infinite canvas, plan on boards, and link everything together.",
+    "createUpdaterArtifacts": true,
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.ico",
+      "icons/icon.png"
+    ],
+    "windows": {
+      "webviewInstallMode": {
+        "type": "downloadBootstrapper"
+      },
+      "nsis": {
+        "installMode": "currentUser",
+        "displayLanguageSelector": false
+      }
+    }
+  },
+  "plugins": {
+    "updater": {
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDE2MDA4QjRBMThDN0I2NzUKUldSMXRzY1lTb3NBRnY0bHFWVFo4SVVmRnVlRU9YWjhJNmJGZ01jd2FRak9DUDg2MmE2cmYvVXUK",
+      "endpoints": [
+        "https://github.com/ssaad5678/haltspace/releases/latest/download/latest.json"
+      ],
+      "windows": {
+        "installMode": "passive"
+      }
+    }
+  }
+}

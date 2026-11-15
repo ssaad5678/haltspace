@@ -1,0 +1,121 @@
+# Runs on every push to main:
+#  1. builds the app (version history and roadmap come from CHANGELOG.md and ROADMAP.md)
+#  2. publishes the web version on GitHub Pages
+#  3. if CHANGELOG.md has a version that hasn't been released yet:
+#     - creates a GitHub release (tag vX.Y.Z) with the notes and the single-file download
+#     - builds the Windows app (installer .exe and .msi) and attaches it, plus the
+#       update feed (latest.json) that installed copies use to update themselves
+name: Build, publish and release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.ver.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Build
+        run: node scripts/build.js
+      - name: Read version
+        id: ver
+        run: echo "version=$(node -p "require('./dist/version.json').version")" >> "$GITHUB_OUTPUT"
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist
+
+  pages:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    outputs:
+      created: ${{ steps.rel.outputs.created }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+      - name: Create the release if this version is new
+        id: rel
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ needs.build.outputs.version }}
+        run: |
+          if gh release view "v$VERSION" >/dev/null 2>&1; then
+            echo "v$VERSION is already released. Add a new version to CHANGELOG.md to publish another release."
+            echo "created=false" >> "$GITHUB_OUTPUT"
+          else
+            gh release create "v$VERSION" dist/halt-workspace.html \
+              --title "$(cat dist/release-title.txt)" \
+              --notes-file dist/release-notes.md \
+              --target "$GITHUB_SHA"
+            echo "created=true" >> "$GITHUB_OUTPUT"
+          fi
+
+  windows:
+    needs: [build, release]
+    if: needs.release.outputs.created == 'true' || github.event_name == 'workflow_dispatch'
+    runs-on: windows-latest
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+      TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri
+      # With the signing key: installer + one-click update feed for installed copies.
+      - name: Build Windows app (with one-click updates)
+        if: env.TAURI_SIGNING_PRIVATE_KEY != ''
+        uses: tauri-apps/tauri-action@v0
+        with:
+          tagName: v${{ needs.build.outputs.version }}
+          releaseName: v${{ needs.build.outputs.version }}
+          includeUpdaterJson: true
+      # Without the key: installer only (installed copies are told about updates and download the installer).
+      - name: Build Windows app (installer only)
+        if: env.TAURI_SIGNING_PRIVATE_KEY == ''
+        uses: tauri-apps/tauri-action@v0
+        with:
+          tagName: v${{ needs.build.outputs.version }}
+          releaseName: v${{ needs.build.outputs.version }}
+          includeUpdaterJson: false
+          args: --config {"bundle":{"createUpdaterArtifacts":false}}
