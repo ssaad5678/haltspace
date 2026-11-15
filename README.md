@@ -8,30 +8,50 @@ Free · Windows 10 and 11 · about 2 MB · updates itself · no account
 
 [Download page](https://ssaad5678.github.io/haltspace/) · [All releases](https://github.com/ssaad5678/haltspace/releases/latest) · [Use it in your browser](https://ssaad5678.github.io/haltspace/app/) · [What's new](CHANGELOG.md) · [Roadmap](ROADMAP.md)
 
-![Haltspace start screen](docs/screenshots/home.png)
+![Haltspace start screen](docs/screenshots/home.webp)
 
-## One app instead of six
+## One app instead of many
 
 Haltspace is a free alternative to the tools people switch between all day:
 
-| Instead of | Haltspace gives you |
-| --- | --- |
-| **Notion** | Pages inside pages, folders, templates and a `/` slash menu |
-| **Obsidian** | `[[Links]]` between pages, backlinks, tags and a graph view, all saved on your device |
-| **Excalidraw** | Hand-drawn shapes, arrows and freehand pen, with drawings you can drop into notes |
-| **Miro** | An infinite whiteboard with sticky notes, mind maps, frames and presentation mode |
-| **Microsoft Word** | Real A4 pages, a labeled toolbar, headers and footers, and Save as PDF |
-| **Trello** | Project boards with cards, due dates and labels, plus table and calendar views |
+<p>
+<img src="docs/logos/notion.svg" width="40" alt="Notion" title="Notion">
+<img src="docs/logos/obsidian.svg" width="40" alt="Obsidian" title="Obsidian">
+<img src="docs/logos/evernote.svg" width="40" alt="Evernote" title="Evernote">
+<img src="docs/logos/onenote.svg" width="40" alt="OneNote" title="OneNote">
+<img src="docs/logos/word.svg" width="40" alt="Microsoft Word" title="Microsoft Word">
+<img src="docs/logos/googledocs.svg" width="40" alt="Google Docs" title="Google Docs">
+<img src="docs/logos/excalidraw.svg" width="40" alt="Excalidraw" title="Excalidraw">
+<img src="docs/logos/miro.svg" width="40" alt="Miro" title="Miro">
+<img src="docs/logos/trello.svg" width="40" alt="Trello" title="Trello">
+<img src="docs/logos/googlekeep.svg" width="40" alt="Google Keep" title="Google Keep">
+<img src="docs/logos/logseq.svg" width="40" alt="Logseq" title="Logseq">
+<img src="docs/logos/roamresearch.svg" width="40" alt="Roam Research" title="Roam Research">
+</p>
+
+| | Instead of | Haltspace gives you |
+| --- | --- | --- |
+| <img src="docs/logos/notion.svg" width="28" alt=""> | **Notion** | Pages inside pages, folders, templates and a `/` slash menu |
+| <img src="docs/logos/obsidian.svg" width="28" alt=""> | **Obsidian** | `[[Links]]` between pages, backlinks, tags and a graph view, all saved on your device |
+| <img src="docs/logos/evernote.svg" width="28" alt=""> | **Evernote** | Quick notes, checklists, tags, global search and a daily page |
+| <img src="docs/logos/onenote.svg" width="28" alt=""> | **OneNote** | Notebooks with folders and nested pages, with drawings and pictures inside your notes |
+| <img src="docs/logos/word.svg" width="28" alt=""> | **Microsoft Word** | Real A4 pages, a labeled toolbar, headers and footers, and Save as PDF |
+| <img src="docs/logos/excalidraw.svg" width="28" alt=""> | **Excalidraw** | Hand-drawn shapes, arrows and freehand pen, with drawings you can drop into notes |
+| <img src="docs/logos/miro.svg" width="28" alt=""> | **Miro** | An infinite whiteboard with sticky notes, mind maps, frames and presentation mode |
+| <img src="docs/logos/trello.svg" width="28" alt=""> | **Trello** | Project boards with cards, due dates and labels, plus table and calendar views |
+| <img src="docs/logos/googlekeep.svg" width="28" alt=""> | **Google Keep** | Fast checklists and sticky notes, with open tasks on your start screen |
+
+<sub>All product names and logos are trademarks of their owners. Haltspace isn't affiliated with or endorsed by them. Logos come from [Simple Icons](https://simpleicons.org) (CC0); OneNote and Word are shown as plain monograms because Microsoft's logos aren't licensed for this use.</sub>
 
 ## Screenshots
 
 | Notes | Whiteboard |
 | --- | --- |
-| ![Notes](docs/screenshots/notes.png) | ![Whiteboard](docs/screenshots/canvas.png) |
+| ![Notes](docs/screenshots/notes.webp) | ![Whiteboard](docs/screenshots/canvas.webp) |
 | **Boards** | **Graph** |
-| ![Boards](docs/screenshots/board.png) | ![Graph](docs/screenshots/graph.png) |
+| ![Boards](docs/screenshots/board.webp) | ![Graph](docs/screenshots/graph.webp) |
 | **Dark mode** | **Updates** |
-| ![Dark mode](docs/screenshots/canvas-dark.png) | ![Updates](docs/screenshots/updates.png) |
+| ![Dark mode](docs/screenshots/canvas-dark.webp) | ![Updates](docs/screenshots/updates.webp) |
 
 ## Install
 

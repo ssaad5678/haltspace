@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Haltspace: notes, whiteboard and projects in one app</title>
-<meta name="description" content="Haltspace by halt.ae is a free Windows app that combines notes, an infinite whiteboard and project boards. One app instead of Notion, Obsidian, Excalidraw, Miro and Word.">
+<meta name="description" content="Haltspace by halt.ae is a free Windows app that combines notes, an infinite whiteboard and project boards. One app instead of Notion, Obsidian, Evernote, OneNote, Miro and Word.">
 <meta name="theme-color" content="#0F3B26">
 <meta property="og:title" content="Haltspace: notes, whiteboard and projects in one app">
 <meta property="og:description" content="One free app instead of Notion, Obsidian, Excalidraw, Miro and Word. Your work stays on your computer.">
-<meta property="og:image" content="screenshots/home.png">
+<meta property="og:image" content="screenshots/home.webp">
 <link rel="icon" href="app/icon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,7 +24,7 @@
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--fg);font:400 16px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
 a{color:inherit}
-img{max-width:100%;display:block}
+img{max-width:100%;height:auto;display:block}
 .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
 .k{font:500 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
 .btn{display:inline-flex;align-items:center;gap:10px;height:46px;padding:0 20px;border:1px solid var(--forest);font:600 12.5px var(--mono);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:background .15s,color .15s,transform .15s}
@@ -86,6 +86,15 @@ section{padding:88px 0;border-bottom:1px solid var(--line)}
 .rep.all p{color:#C9DCCB}
 .rep.all p strong{color:#fff}
 
+.rep-h{justify-content:flex-start}
+.rep-h img{width:34px;height:34px;flex:none;margin-right:2px}
+.rep-h span{margin-left:auto}
+.rep.all .rep-h img{filter:none}
+.logos{display:grid;gap:12px;justify-items:center;margin-top:8px}
+.logo-row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.lg{display:flex;align-items:center;gap:8px;padding:5px 12px 5px 5px;background:rgba(255,255,255,.7);border:1px solid var(--line);font:500 13px var(--sans);color:var(--fg)}
+.lg img{width:28px;height:28px}
+.tm{margin:14px 0 0;font:400 11.5px var(--mono);color:var(--faint)}
 /* features */
 .feat-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
 .feat{padding:22px;border:1px solid var(--line);background:var(--paper)}
@@ -183,30 +192,35 @@ footer a:hover{color:var(--fg)}
     <div class="wrap hero-grid">
       <div class="tags"><span class="tag on">Free</span><span class="tag">Windows 10 &amp; 11</span><span class="tag">Version {{VERSION}}</span><span class="tag">Updates itself</span></div>
       <h1>Notes, whiteboards and projects. <em>One app.</em></h1>
-      <p class="lede">Haltspace replaces the stack of <b>Notion, Obsidian, Excalidraw, Miro and Word</b> with one fast app. Write, sketch and plan in one place, link it all together, and keep your work on your own computer.</p>
+      <p class="lede">Haltspace replaces <b>Notion, Obsidian, Evernote, OneNote, Miro and Word</b> with one fast app. Write, sketch and plan in one place, link it all together, and keep your work on your own computer.</p>
       <div class="cta">
         <a class="btn primary" href="{{EXE_URL}}" data-dl><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5l7.4-1v7.1H3zM11.3 4.4L21 3v8.6h-9.7zM3 12.4h7.4v7.1L3 18.5zM11.3 12.4H21V21l-9.7-1.4z"/></svg>Download for Windows</a>
         <a class="btn ghost" href="app/">Open in your browser</a>
       </div>
       <div class="cta-note"><span data-dl-meta>Windows installer · about 2 MB · no account needed</span> · <a href="{{RELEASES}}">All downloads</a></div>
+      <div class="logos"><span class="k">Use it instead of</span><div class="logo-row"><span class="lg"><img src="logos/notion.svg" alt="" width="28" height="28">Notion</span><span class="lg"><img src="logos/obsidian.svg" alt="" width="28" height="28">Obsidian</span><span class="lg"><img src="logos/evernote.svg" alt="" width="28" height="28">Evernote</span><span class="lg"><img src="logos/onenote.svg" alt="" width="28" height="28">OneNote</span><span class="lg"><img src="logos/word.svg" alt="" width="28" height="28">Word</span><span class="lg"><img src="logos/googledocs.svg" alt="" width="28" height="28">Google Docs</span><span class="lg"><img src="logos/excalidraw.svg" alt="" width="28" height="28">Excalidraw</span><span class="lg"><img src="logos/miro.svg" alt="" width="28" height="28">Miro</span><span class="lg"><img src="logos/trello.svg" alt="" width="28" height="28">Trello</span><span class="lg"><img src="logos/googlekeep.svg" alt="" width="28" height="28">Google Keep</span><span class="lg"><img src="logos/logseq.svg" alt="" width="28" height="28">Logseq</span><span class="lg"><img src="logos/roamresearch.svg" alt="" width="28" height="28">Roam Research</span></div></div>
       <div class="shot-frame">
         <div class="shot-bar"><i></i><i></i><i></i><span>Haltspace</span></div>
-        <img src="screenshots/home.png" alt="The Haltspace start screen with notes, a recent files list and open tasks" width="1600" height="1000">
+        <img src="screenshots/home.webp" alt="The Haltspace start screen with notes, a recent files list and open tasks" width="1600" height="1000">
       </div>
     </div>
   </div>
 
   <section id="replaces">
     <div class="wrap">
-      <div class="sec-h"><span class="k">One app instead of six</span><h2>The tools you switch between all day, in one window</h2><p>Haltspace is a free alternative to the apps people juggle for notes, docs, whiteboards and project tracking. Everything lives in the same workspace and links together.</p></div>
+      <div class="sec-h"><span class="k">One app instead of many</span><h2>The tools you switch between all day, in one window</h2><p>Haltspace is a free alternative to the apps people juggle for notes, docs, whiteboards and project tracking. Everything lives in the same workspace and links together.</p></div>
       <div class="replace-grid">
-        <div class="rep"><div class="rep-h"><b>Notion</b><span>Docs &amp; wikis</span></div><p><strong>Pages inside pages, folders, templates and a <code>/</code> slash menu</strong> for headings, tables, checklists and more.</p></div>
-        <div class="rep"><div class="rep-h"><b>Obsidian</b><span>Linked notes</span></div><p><strong><code>[[Links]]</code> between pages, backlinks, tags and a graph</strong> that shows how your ideas connect. All saved on your device.</p></div>
-        <div class="rep"><div class="rep-h"><b>Excalidraw</b><span>Sketching</span></div><p><strong>Hand-drawn shapes, arrows and freehand pen</strong>, plus drawings you can drop right into a note and keep editing.</p></div>
-        <div class="rep"><div class="rep-h"><b>Miro</b><span>Whiteboards</span></div><p><strong>An infinite canvas with sticky notes, mind maps, frames and presentation mode.</strong> Drag from a shape to connect it.</p></div>
-        <div class="rep"><div class="rep-h"><b>Microsoft Word</b><span>Documents</span></div><p><strong>Real A4 pages, a labeled toolbar, headers and footers, and Save as PDF.</strong> Just click and type.</p></div>
-        <div class="rep"><div class="rep-h"><b>Trello</b><span>Project boards</span></div><p><strong>Boards with cards, due dates and labels</strong>, which you can also view as a table or a calendar.</p></div>
+        <div class="rep"><div class="rep-h"><img src="logos/notion.svg" alt="" width="34" height="34"><b>Notion</b><span>Docs &amp; wikis</span></div><p><strong>Pages inside pages, folders, templates and a <code>/</code> slash menu</strong> for headings, tables, checklists and more.</p></div>
+        <div class="rep"><div class="rep-h"><img src="logos/obsidian.svg" alt="" width="34" height="34"><b>Obsidian</b><span>Linked notes</span></div><p><strong><code>[[Links]]</code> between pages, backlinks, tags and a graph</strong> that shows how your ideas connect. All saved on your device.</p></div>
+        <div class="rep"><div class="rep-h"><img src="logos/evernote.svg" alt="" width="34" height="34"><b>Evernote</b><span>Note capture</span></div><p><strong>Quick notes from the start screen, checklists, tags and global search</strong>, plus a daily page for everything that comes up.</p></div>
+        <div class="rep"><div class="rep-h"><img src="logos/onenote.svg" alt="" width="34" height="34"><b>OneNote</b><span>Notebooks</span></div><p><strong>Notebooks with folders and pages inside pages</strong>, with drawings and pictures you can draw on right inside your notes.</p></div>
+        <div class="rep"><div class="rep-h"><img src="logos/word.svg" alt="" width="34" height="34"><b>Microsoft Word</b><span>Documents</span></div><p><strong>Real A4 pages, a labeled toolbar, headers and footers, and Save as PDF.</strong> Just click and type.</p></div>
+        <div class="rep"><div class="rep-h"><img src="logos/excalidraw.svg" alt="" width="34" height="34"><b>Excalidraw</b><span>Sketching</span></div><p><strong>Hand-drawn shapes, arrows and freehand pen</strong>, plus drawings you can drop right into a note and keep editing.</p></div>
+        <div class="rep"><div class="rep-h"><img src="logos/miro.svg" alt="" width="34" height="34"><b>Miro</b><span>Whiteboards</span></div><p><strong>An infinite canvas with sticky notes, mind maps, frames and presentation mode.</strong> Drag from a shape to connect it.</p></div>
+        <div class="rep"><div class="rep-h"><img src="logos/trello.svg" alt="" width="34" height="34"><b>Trello</b><span>Project boards</span></div><p><strong>Boards with cards, due dates and labels</strong>, which you can also view as a table or a calendar.</p></div>
+        <div class="rep"><div class="rep-h"><img src="logos/googlekeep.svg" alt="" width="34" height="34"><b>Google Keep</b><span>Quick lists</span></div><p><strong>Fast checklists and sticky notes</strong>, with open tasks collected on your start screen.</p></div>
       </div>
+      <p class="tm">Notion, Obsidian, Evernote, OneNote, Word, Google Docs, Excalidraw, Miro, Trello, Google Keep, Logseq and Roam Research are trademarks of their owners. Haltspace isn't affiliated with or endorsed by them; the names and logos only show which tools it can stand in for.</p>
     </div>
   </section>
 
@@ -240,7 +254,7 @@ footer a:hover{color:var(--fg)}
       </div>
       <div class="shot-frame">
         <div class="shot-bar"><i></i><i></i><i></i><span id="shot-title">Haltspace · Notes</span></div>
-        <img id="shot-img" src="screenshots/notes.png" alt="A note in Haltspace" width="1600" height="1000">
+        <img id="shot-img" src="screenshots/notes.webp" alt="A note in Haltspace" width="1600" height="1000">
       </div>
       <p class="cap" id="shot-cap">Notes look and work like a Word document: real pages, a labeled toolbar, headers, footers and PDF export.</p>
     </div>
@@ -326,9 +340,9 @@ footer a:hover{color:var(--fg)}
   const img = document.getElementById('shot-img'), cap = document.getElementById('shot-cap'), title = document.getElementById('shot-title');
   document.querySelectorAll('[data-shot]').forEach(b => b.addEventListener('click', () => {
     document.querySelectorAll('[data-shot]').forEach(x => x.setAttribute('aria-selected', x === b ? 'true' : 'false'));
-    const k = b.dataset.shot; img.src = 'screenshots/' + k + '.png'; img.alt = 'Haltspace: ' + caps[k][0]; cap.textContent = caps[k][1]; title.textContent = 'Haltspace · ' + caps[k][0];
+    const k = b.dataset.shot; img.src = 'screenshots/' + k + '.webp'; img.alt = 'Haltspace: ' + caps[k][0]; cap.textContent = caps[k][1]; title.textContent = 'Haltspace · ' + caps[k][0];
   }));
-  Object.keys(caps).forEach(k => { const i = new Image(); i.src = 'screenshots/' + k + '.png'; });
+  Object.keys(caps).forEach(k => { const i = new Image(); i.src = 'screenshots/' + k + '.webp'; });
 })();
 // Point the download buttons at the newest Windows installer
 (async () => {

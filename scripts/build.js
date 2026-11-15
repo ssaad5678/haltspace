@@ -114,6 +114,8 @@ const landing = rd('landing/index.html')
   .replaceAll('{{REPO}}', repo);
 fs.writeFileSync(path.join(DIST, 'index.html'), landing);
 const SHOTS = path.join(ROOT, 'docs', 'screenshots');
+const LOGOS = path.join(ROOT, 'docs', 'logos');
+if (fs.existsSync(LOGOS)) { fs.mkdirSync(path.join(DIST, 'logos'), { recursive: true }); for (const f of fs.readdirSync(LOGOS)) fs.copyFileSync(path.join(LOGOS, f), path.join(DIST, 'logos', f)); }
 if (fs.existsSync(SHOTS)) { fs.mkdirSync(path.join(DIST, 'screenshots'), { recursive: true }); for (const f of fs.readdirSync(SHOTS)) fs.copyFileSync(path.join(SHOTS, f), path.join(DIST, 'screenshots', f)); }
 
 // desktop (Windows app) frontend: same app, no web-install files
