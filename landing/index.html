@@ -69,8 +69,8 @@ code{font:500 .86em var(--mono);background:var(--lime-soft);padding:0 4px}
 .hero .doodle{top:30px;left:-4%;width:108%;height:auto}
 .mega{position:relative;z-index:1;margin:0;font:900 clamp(64px,17.6vw,330px)/.82 var(--sans);font-stretch:68%;letter-spacing:-.025em;text-transform:uppercase;text-align:center;
   color:var(--forest);
-  background:url(screenshots/canvas-dark.webp) 0% 40%/34% auto no-repeat, url(screenshots/board-dark.webp) 36% 30%/34% auto no-repeat, url(screenshots/graph-dark.webp) 70% 40%/34% auto no-repeat, url(screenshots/home-dark.webp) 104% 30%/34% auto no-repeat, var(--forest);
-  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;padding:0 var(--pad)}
+  background:url(screenshots/fill.webp) 0 0/52% auto repeat, var(--lime);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;-webkit-text-stroke:clamp(1.5px,.22vw,4px) var(--forest);padding:0 var(--pad);filter:drop-shadow(.04em .045em 0 var(--forest))}
 .hero-sub{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(24px,5vw,90px);align-items:start;margin-top:clamp(28px,4vw,56px)}
 .hero-sub h1{margin:0;font-size:clamp(30px,3.6vw,52px);line-height:1.02;color:var(--forest)}
 .hero-sub h1 .hand{font-size:1.25em;display:inline-block;transform:rotate(-3deg);margin-left:.1em}
@@ -119,6 +119,20 @@ code{font:500 .86em var(--mono);background:var(--lime-soft);padding:0 4px}
 .cols a{font:700 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--lime);text-decoration:none}
 .cols a:hover{text-decoration:underline}
 
+/* bento */
+.lede-c{max-width:680px;margin:clamp(24px,3vw,40px) auto 0;text-align:center;font-size:clamp(17px,1.5vw,21px);color:var(--muted)}
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:clamp(150px,15vw,250px);gap:16px;margin-top:clamp(30px,4vw,56px)}
+.tile{position:relative;margin:0;border-radius:18px;overflow:hidden;border:1.5px solid var(--forest);background:var(--paper)}
+.tile img{width:100%;height:100%;object-fit:cover;object-position:70% 45%;transform:scale(1.32);transform-origin:68% 42%;transition:transform .6s}
+.tile:hover img{transform:scale(1.4)}
+.t-big{grid-column:span 2;grid-row:span 2}
+.t-big img{transform-origin:62% 52%}
+.tile:not(.t-big):not(.t-tall) figcaption{font-size:12px;padding:7px 10px}
+.tile:not(.t-big):not(.t-tall) figcaption b{font-size:17px}
+.t-tall{grid-column:span 2;grid-row:span 2}
+.t-wide{grid-column:span 2}
+.tile figcaption{position:absolute;left:12px;bottom:12px;right:12px;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;padding:9px 13px;border-radius:12px;background:color-mix(in srgb,var(--forest) 92%,transparent);color:#DCEBD8;font-size:13.5px;line-height:1.35}
+.tile figcaption b{font:900 20px var(--sans);font-stretch:75%;color:var(--lime);text-transform:uppercase}
 /* tour (horizontal) */
 .tour{position:relative;padding:clamp(80px,10vw,140px) 0 0;overflow:hidden}
 .tour-head{display:flex;align-items:end;justify-content:space-between;gap:20px;flex-wrap:wrap}
@@ -160,6 +174,25 @@ code{font:500 .86em var(--mono);background:var(--lime-soft);padding:0 4px}
 .steps li i{font:700 34px/1 var(--hand);font-style:normal;color:var(--paper);background:var(--forest);border-radius:50%;width:54px;height:54px;display:grid;place-items:center}
 .steps b{display:block;font-size:19px;color:var(--forest)}
 .steps span{color:var(--muted);font-size:15.5px}
+.faq-zone{margin-top:clamp(70px,9vw,130px)}
+.faq-head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:6px 24px}
+.faq-head h2{margin:8px 0 0;font-size:clamp(40px,5vw,76px);line-height:.95;color:var(--forest)}
+.faq-hint{font-size:30px;margin:0 0 6px}
+.wall{display:grid;grid-template-columns:repeat(4,1fr);gap:26px 22px;margin-top:36px;perspective:1400px}
+.sn{all:unset;box-sizing:border-box;display:block;cursor:pointer;aspect-ratio:1/0.8;transform:rotate(var(--r));transition:transform .3s}
+.sn:hover{transform:rotate(0) translateY(-4px) scale(1.02)}
+.sn:focus-visible{outline:3px solid var(--amber);outline-offset:6px}
+.sn-in{position:relative;display:block;width:100%;height:100%;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.3,1.4,.5,1)}
+.sn[aria-expanded="true"] .sn-in{transform:rotateY(180deg)}
+.sn-f,.sn-b{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;padding:26px 22px 18px;box-shadow:0 14px 22px -14px rgba(16,38,26,.45),inset 0 -18px 30px -24px rgba(0,0,0,.25);display:flex;flex-direction:column}
+.sn-f b{font:700 clamp(26px,2.3vw,34px)/1.02 var(--hand);color:#1d2a20}
+.sn-f em{margin-top:auto;font:600 10.5px var(--mono);font-style:normal;letter-spacing:.14em;text-transform:uppercase;color:rgba(29,42,32,.55)}
+.sn-b{transform:rotateY(180deg);font-size:15.5px;line-height:1.5;color:#1d2a20;justify-content:center}
+.tape{position:absolute;top:-11px;left:50%;width:84px;height:24px;transform:translateX(-50%) rotate(-4deg);background:rgba(255,255,255,.55);border:1px solid rgba(0,0,0,.06)}
+.sn-yellow .sn-f,.sn-yellow .sn-b{background:#FFF06B}
+.sn-pink .sn-f,.sn-pink .sn-b{background:#FFCADB}
+.sn-blue .sn-f,.sn-blue .sn-b{background:#C6DAFF}
+.sn-green .sn-f,.sn-green .sn-b{background:#C9F0D5}
 .faq details{border-bottom:1.5px solid var(--line)}
 .faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;padding:20px 0;font:700 19px var(--sans);color:var(--forest)}
 .faq summary::-webkit-details-marker{display:none}
@@ -169,7 +202,7 @@ code{font:500 .86em var(--mono);background:var(--lime-soft);padding:0 4px}
 
 /* final */
 .final{position:relative;padding:clamp(40px,6vw,80px) 0 0;text-align:center;overflow:hidden}
-.final .mega{font-size:clamp(60px,15.5vw,290px);background:url(screenshots/canvas-dark.webp) 30% 50%/60% auto no-repeat,url(screenshots/notes-dark.webp) 100% 40%/50% auto no-repeat,var(--forest);-webkit-background-clip:text;background-clip:text}
+.final .mega{font-size:clamp(60px,15.5vw,290px);background:url(screenshots/fill-dark.webp) 0 30%/50% auto repeat,var(--forest);-webkit-background-clip:text;background-clip:text;filter:drop-shadow(.04em .045em 0 var(--amber))}
 .final .hand{font-size:clamp(40px,5vw,80px);display:block;margin:-.2em 0 .5em;transform:rotate(-3deg)}
 .final .cta{justify-content:center}
 .final .meta{margin-bottom:clamp(60px,8vw,110px)}
@@ -188,6 +221,8 @@ footer a:hover{color:var(--forest)}
   .cols>div{border-left:0;padding:0 0 0 0;border-top:1.5px solid #2C6146;padding-top:22px}
   .cols>div:first-child{border-top:0;padding-top:0}
   .swap-grid,.feat{grid-template-columns:1fr 1fr}
+  .bento{grid-template-columns:1fr 1fr}
+  .wall{grid-template-columns:1fr 1fr}
   .f:not(:nth-child(3n+1)){padding-left:0;border-left:0}
   .f:nth-child(even){padding-left:24px;border-left:1.5px solid var(--line)}
 }
@@ -196,6 +231,9 @@ footer a:hover{color:var(--forest)}
   .nav .btn{display:none}
   .hero{padding-top:96px}
   .swap-grid,.feat{grid-template-columns:1fr}
+  .bento{grid-template-columns:1fr;grid-auto-rows:220px}
+  .t-big,.t-tall,.t-wide{grid-column:auto;grid-row:auto}
+  .wall{gap:20px 14px}.sn-f,.sn-b{padding:20px 14px 12px}.sn-b{font-size:13.5px}.sn-f b{font-size:24px}
   .f:nth-child(even){padding-left:0;border-left:0}
   .rail{width:auto;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:70px}
   .slide{width:86vw;scroll-snap-align:center}
@@ -223,7 +261,7 @@ footer a:hover{color:var(--forest)}
   <!-- HERO -->
   <section class="hero">
     <svg class="doodle" viewBox="0 0 1600 520" aria-hidden="true"><path data-draw d="M-40 300 C 120 120, 300 120, 360 250 S 300 470, 220 400 S 260 180, 470 160 S 760 330, 860 260 C 940 200, 900 90, 830 120 C 760 150, 820 300, 980 320 S 1240 140, 1330 210 S 1380 420, 1290 410 S 1300 230, 1460 190 S 1640 260, 1680 220"/></svg>
-    <h2 class="mega">Haltspace</h2>
+    <h2 class="mega" data-text="Haltspace">Haltspace</h2>
     <div class="wrap hero-sub">
       <h1 class="ital" data-reveal>Notes, whiteboards and projects, <span class="hand">in one app.</span></h1>
       <div data-reveal>
@@ -270,6 +308,24 @@ footer a:hover{color:var(--forest)}
       <div data-reveal><h3 class="ital">Infinite whiteboard</h3><p>Sticky notes, mind maps, hand-drawn shapes and frames, on a canvas that never runs out. Drag from any shape to connect it, then present it.</p><a href="#tour">See the whiteboard →</a></div>
       <div data-reveal><h3 class="ital">Project boards</h3><p>Cards with labels and due dates in columns, or flip the same board into a table or a calendar. Link any card to its notes.</p><a href="#tour">See the boards →</a></div>
       <div data-reveal><h3 class="ital">Everything connected</h3><p>Every <code style="background:#1F5A3B;color:var(--lime)">[[link]]</code> becomes a backlink and a line in the graph, so ideas find each other. Search it all with Ctrl K.</p><a href="#tour">See the graph →</a></div>
+    </div>
+  </section>
+
+  <!-- MESSY -->
+  <section class="story" id="messy" style="padding-bottom:40px">
+    <div class="word-block">
+      <p class="ghost-word" aria-hidden="true">Messy</p>
+      <span class="overlay hand" data-reveal>built for big, messy work</span>
+    </div>
+    <div class="wrap">
+      <p class="lede-c" data-reveal>Not a toy notepad. This is one real workspace: a product launch with research, plans, flows and deadlines, all in one window.</p>
+      <div class="bento">
+        <figure class="tile t-big" data-reveal><img src="screenshots/canvas.webp" alt="A whiteboard with a big mind map, a research wall of sticky notes and a launch flowchart" width="1600" height="1000" loading="lazy"><figcaption><b>123 items</b><span>on one canvas: mind map, 12-sticky research wall, flowchart</span></figcaption></figure>
+        <figure class="tile t-tall" data-reveal><img src="screenshots/notes.webp" alt="A launch plan note with tasks, tables and colored statuses" width="1600" height="1000" loading="lazy"><figcaption><b>14 tasks · 2 tables</b><span>colored statuses, highlights, a drawing inside the note</span></figcaption></figure>
+        <figure class="tile " data-reveal><img src="screenshots/board.webp" alt="A five-column sprint board" width="1600" height="1000" loading="lazy"><figcaption><b>23 cards</b><span>5 columns, labels, due dates, linked pages</span></figcaption></figure>
+        <figure class="tile " data-reveal><img src="screenshots/journey.webp" alt="A user journey map on the canvas" width="1600" height="1000" loading="lazy"><figcaption><b>5 swimlanes</b><span>a user journey map, sticky by sticky</span></figcaption></figure>
+        <figure class="tile t-wide" data-reveal><img src="screenshots/graph-dark.webp" alt="The graph of linked pages in dark mode" width="1600" height="1000" loading="lazy"><figcaption><b>17 pages</b><span>every [[link]] becomes a line</span></figcaption></figure>
+      </div>
     </div>
   </section>
 
@@ -336,17 +392,18 @@ footer a:hover{color:var(--forest)}
           <li data-reveal><i>3</i><div><b>Stay updated</b><span>Haltspace checks for new versions when it opens. When one is ready, click Restart to update.</span></div></li>
         </ol>
       </div>
-      <div id="faq">
-        <span class="k">Questions</span>
-        <h2 class="ital">FAQ</h2>
-        <div class="faq">
-          <details open><summary>Is Haltspace free?</summary><p>Yes. Haltspace is free to download and use, with no account and no subscription.</p></details>
-          <details><summary>Where are my notes stored?</summary><p>On your own computer, inside the app. Nothing is uploaded. Use Home → Backup to save a copy of your whole workspace, and Restore backup to bring it back on any computer.</p></details>
-          <details><summary>Why does Windows say "Windows protected your PC"?</summary><p>Windows shows this for apps from new publishers that haven't bought a code-signing certificate yet. Click More info, then Run anyway. The installer is built automatically from the public source code on GitHub.</p></details>
-          <details><summary>How do updates work?</summary><p>When a new version is released, Haltspace shows a notice. Open Updates and click Restart to update; it downloads, installs and reopens by itself, and your notes stay where they are.</p></details>
-          <details><summary>Does it work offline?</summary><p>Yes. The Windows app works fully offline. You only need a connection to check for updates and to load online fonts.</p></details>
-          <details><summary>Is there a Mac version?</summary><p>Not yet. A macOS app is on the roadmap. Until then you can <a href="app/">use Haltspace in your browser</a> on any computer.</p></details>
-        </div>
+    </div>
+    <div class="wrap faq-zone" id="faq">
+      <div class="faq-head"><div><span class="k">Questions</span><h2 class="ital">Things people <span class="hand">actually ask</span></h2></div><p class="faq-hint hand">pick a note, any note ↓</p></div>
+      <div class="wall">
+        <button class="sn sn-yellow" style="--r:-3deg" aria-expanded="false"><span class="sn-in"><span class="sn-f"><i class="tape"></i><b>Is it actually free?</b><em>tap to flip ↻</em></span><span class="sn-b">Yes. No account, no trial, no “pro” wall. Download it and it's yours.</span></span></button>
+        <button class="sn sn-pink" style="--r:2deg" aria-expanded="false"><span class="sn-in"><span class="sn-f"><i class="tape"></i><b>Where do my notes live?</b><em>tap to flip ↻</em></span><span class="sn-b">On your computer, inside the app. Nothing is uploaded. Home → Backup saves everything as one file you can restore anywhere.</span></span></button>
+        <button class="sn sn-blue" style="--r:-1.5deg" aria-expanded="false"><span class="sn-in"><span class="sn-f"><i class="tape"></i><b>“Windows protected your PC”?!</b><em>tap to flip ↻</em></span><span class="sn-b">Windows says that about new apps without a paid code-signing certificate. Click More info → Run anyway. The installer is built straight from the public code on GitHub.</span></span></button>
+        <button class="sn sn-green" style="--r:3deg" aria-expanded="false"><span class="sn-in"><span class="sn-f"><i class="tape"></i><b>How do updates work?</b><em>tap to flip ↻</em></span><span class="sn-b">You get a notice when a new version is out. Click Restart to update and it installs itself. Your notes stay put.</span></span></button>
+        <button class="sn sn-yellow" style="--r:-2.5deg" aria-expanded="false"><span class="sn-in"><span class="sn-f"><i class="tape"></i><b>Does it work offline?</b><em>tap to flip ↻</em></span><span class="sn-b">Completely. You only need the internet to check for updates and to load web fonts.</span></span></button>
+        <button class="sn sn-pink" style="--r:1.5deg" aria-expanded="false"><span class="sn-in"><span class="sn-f"><i class="tape"></i><b>Can I bring my Notion or Obsidian notes?</b><em>tap to flip ↻</em></span><span class="sn-b">Not with one click yet: Markdown import is on the roadmap. Today you can paste rich text and the formatting comes along.</span></span></button>
+        <button class="sn sn-blue" style="--r:-1deg" aria-expanded="false"><span class="sn-in"><span class="sn-f"><i class="tape"></i><b>Mac? Phone?</b><em>tap to flip ↻</em></span><span class="sn-b">A Mac app and a phone layout are on the roadmap. Until then, the browser version runs on any computer.</span></span></button>
+        <button class="sn sn-green" style="--r:2.5deg" aria-expanded="false"><span class="sn-in"><span class="sn-f"><i class="tape"></i><b>Something broke. Now what?</b><em>tap to flip ↻</em></span><span class="sn-b">Tell us on GitHub (link in the footer). Screenshots help, and your notes are never part of a bug report.</span></span></button>
       </div>
     </div>
   </section>
@@ -354,7 +411,7 @@ footer a:hover{color:var(--forest)}
   <!-- FINAL -->
   <section class="final" id="download">
     <svg class="doodle lime" viewBox="0 0 1600 400" style="left:0;top:40px;width:100%" aria-hidden="true"><path data-draw d="M-20 220 C 160 60, 320 360, 520 200 S 760 40, 820 160 S 700 330, 640 250 S 900 80, 1100 220 S 1400 330, 1620 140"/></svg>
-    <h2 class="mega" aria-label="Download">Download</h2>
+    <h2 class="mega" data-text="Download">Download</h2>
     <span class="hand">it's free, forever</span>
     <div class="wrap">
       <div class="cta">
@@ -376,6 +433,8 @@ footer a:hover{color:var(--forest)}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
+// FAQ sticky notes flip
+document.querySelectorAll('.sn').forEach(b => b.addEventListener('click', () => b.setAttribute('aria-expanded', b.getAttribute('aria-expanded') === 'true' ? 'false' : 'true')));
 // Nav background once you scroll
 (() => { const n = document.getElementById('nav'); const f = () => n.classList.toggle('solid', scrollY > 30); addEventListener('scroll', f, { passive: true }); f(); })();
 
