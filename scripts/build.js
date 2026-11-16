@@ -112,7 +112,23 @@ const landing = rd('landing/index.html')
   .replaceAll('{{RELEASES}}', `${REPO_URL}/releases`)
   .replaceAll('{{REPO_URL}}', REPO_URL)
   .replaceAll('{{REPO}}', repo);
-fs.writeFileSync(path.join(DIST, 'index.html'), landing);
+// apps Haltspace stands in for: logo strip + cards on the download page
+const APPS = [
+  ['notion', 'Notion', 'Docs & wikis', '<strong>Pages inside pages, folders, templates and a <code>/</code> slash menu</strong> for headings, tables and checklists.'],
+  ['obsidian', 'Obsidian', 'Linked notes', '<strong><code>[[Links]]</code>, backlinks, tags and a graph</strong> that shows how your ideas connect. All saved on your device.'],
+  ['evernote', 'Evernote', 'Note capture', '<strong>Quick notes from the start screen, checklists, tags and global search</strong>, plus a daily page.'],
+  ['onenote', 'OneNote', 'Notebooks', '<strong>Folders and pages inside pages</strong>, with drawings and pictures you can draw on right inside your notes.'],
+  ['word', 'Microsoft Word', 'Documents', '<strong>Real A4 pages, a labeled toolbar, headers and footers, and Save as PDF.</strong> Just click and type.'],
+  ['excalidraw', 'Excalidraw', 'Sketching', '<strong>Hand-drawn shapes, arrows and freehand pen</strong>, plus drawings you can drop into a note and keep editing.'],
+  ['miro', 'Miro', 'Whiteboards', '<strong>An infinite canvas with sticky notes, mind maps, frames and presentation mode.</strong>'],
+  ['trello', 'Trello', 'Project boards', '<strong>Cards, labels and due dates</strong>, which you can also view as a table or a calendar.'],
+  ['googlekeep', 'Google Keep', 'Quick lists', '<strong>Fast checklists and sticky notes</strong>, with open tasks collected on your start screen.'],
+  ['googledocs', 'Google Docs', null, null], ['logseq', 'Logseq', null, null], ['roamresearch', 'Roam Research', null, null]
+];
+const esc = t => t.replace(/&/g, '&amp;');
+const chips = APPS.map(([k, n]) => `<span class="chip"><img src="logos/${k}.svg" alt="" width="34" height="34"><s>${esc(n)}</s></span>`).join('');
+const cards = APPS.filter(x => x[2]).map(([k, n, lab, txt]) => `<div class="card" data-reveal><div class="card-h"><img src="logos/${k}.svg" alt="" width="42" height="42"><b>${esc(n)}</b><span>${esc(lab)}</span></div><p>${txt}</p></div>`).join('\n        ');
+fs.writeFileSync(path.join(DIST, 'index.html'), landing.replace('<!--CHIPS-->', chips + `<span aria-hidden="true" style="display:contents">${chips}</span>`).replace('<!--CARDS-->', cards));
 const SHOTS = path.join(ROOT, 'docs', 'screenshots');
 const LOGOS = path.join(ROOT, 'docs', 'logos');
 if (fs.existsSync(LOGOS)) { fs.mkdirSync(path.join(DIST, 'logos'), { recursive: true }); for (const f of fs.readdirSync(LOGOS)) fs.copyFileSync(path.join(LOGOS, f), path.join(DIST, 'logos', f)); }
