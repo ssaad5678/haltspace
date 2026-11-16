@@ -8,6 +8,13 @@ How to write an entry:
 - Group the changes under `### Added`, `### Changed`, `### Fixed` or `### Removed`.
 - Pick the version number by how big the change is: the last number for fixes (1.0.1), the middle one for new features (1.1.0), the first one for big changes that aren't backward compatible (2.0.0).
 
+## [1.0.1] - 2026-11-16 - Steady notes
+
+A quick fix for notes that shook when you scrolled to the bottom.
+
+### Fixed
+- Long notes no longer shake when you scroll to the very end. The reading-progress bar could grow a hair past 100%, which made a horizontal scrollbar flicker on and off.
+
 ## [1.0.0] - 2026-11-16 - Haltspace for Windows
 
 The first public release, now called **Haltspace**. Install it on Windows and it updates itself whenever a new version is published.
