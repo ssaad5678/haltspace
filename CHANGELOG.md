@@ -8,6 +8,14 @@ How to write an entry:
 - Group the changes under `### Added`, `### Changed`, `### Fixed` or `### Removed`.
 - Pick the version number by how big the change is: the last number for fixes (1.0.1), the middle one for new features (1.1.0), the first one for big changes that aren't backward compatible (2.0.0).
 
+## [1.0.2] - 2026-11-17 - Your notes, every time
+
+A fix for notes that seemed to disappear when the app was opened right after starting the computer.
+
+### Fixed
+- On a cold start, Haltspace gave the note database only 1.5 seconds to open and showed an empty workspace if it took longer. It now waits up to 12 seconds with an "Opening your notes…" message, and adds any notes that arrive later.
+- If the note database was briefly busy at startup, Haltspace stopped saving to it for the rest of the session. It now waits until the database is free.
+
 ## [1.0.1] - 2026-11-16 - Steady notes
 
 A quick fix for notes that shook when you scrolled to the bottom.

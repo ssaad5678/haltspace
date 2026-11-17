@@ -1,6 +1,6 @@
 {
   "name": "haltspace",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "description": "Haltspace by halt.ae: notes, canvases and project boards, linked together.",
   "scripts": {
